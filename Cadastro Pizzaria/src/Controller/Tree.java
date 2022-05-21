@@ -1,187 +1,126 @@
 package Controller;
 
-import Model.empresa.Pizzaria;
+import Model.Node;
+import Model.empresa.Cliente;
 
-class Tree{
-    Pizzaria root;
 
-    int height(Pizzaria N)
-    {
+public class Tree{
+    public Node root;
+
+
+    // A utility function to get the height of the tree
+    public int height(Node N) {
         if (N == null)
             return 0;
-        return N.getHeight();
+ 
+        return N.height;
     }
  
-    int max(int a, int b)
-    {
+    // A utility function to get maximum of two integers
+    public int max(int a, int b) {
         return (a > b) ? a : b;
     }
  
-    Pizzaria rightRotate(Pizzaria y)
-    {
-        Pizzaria x = y.getLeft();
-        Pizzaria T2 = x.getRight();
+    // A utility function to right rotate subtree rooted with y
+    // See the diagram given above.
+    public Node rightRotate(Node y) {
+        Node x = y.left;
+        Node T2 = x.right;
  
-
-        x.setRight(y);
-        y.setLeft(T2);
+        // Perform rotation
+        x.right = y;
+        y.left = T2;
  
-        y.setHeight(max(height(y.getLeft()), height(y.getRight())) + 1);
-        x.setHeight(max(height(x.getLeft()), height(x.getRight())) + 1);
+        // Update heights
+        y.height = max(height(y.left), height(y.right)) + 1;
+        x.height = max(height(x.left), height(x.right)) + 1;
  
+        // Return new root
         return x;
     }
  
-    Pizzaria leftRotate(Pizzaria x)
-    {
-        Pizzaria y = x.getRight();
-        Pizzaria T2 = y.getLeft();
+    // A utility function to left rotate subtree rooted with x
+    // See the diagram given above.
+    public Node leftRotate(Node x) {
+        Node y = x.right;
+        Node T2 = y.left;
  
-        y.setLeft(x);
-        x.setRight(T2);
+        // Perform rotation
+        y.left = x;
+        x.right = T2;
  
-        x.setHeight(max(height(x.getLeft()), height(x.getRight())) + 1);
-        y.setHeight(max(height(y.getLeft()), height(y.getRight())) + 1);
+        //  Update heights
+        x.height = max(height(x.left), height(x.right)) + 1;
+        y.height = max(height(y.left), height(y.right)) + 1;
  
+        // Return new root
         return y;
     }
  
-    int getBalance(Pizzaria N)
-    {
+    // Get Balance factor of node N
+    public int getBalance(Node N) {
         if (N == null)
             return 0;
-        return height(N.getLeft()) - height(N.getRight());
+ 
+        return height(N.left) - height(N.right);
     }
  
-    Pizzaria insert(Pizzaria node, int key)
-    {
-        
-        if (node == null)
-            return (new Pizzaria(key));
+    public Node insert(Node node, Cliente key) {
  
-        if (key < node.getKey())
-            node.setLeft(insert(node.getLeft(), key));
-        else if (key > node.getKey())
-            node.setRight(insert(node.getRight(), key));
-        else 
+        /* 1.  Perform the normal BST insertion */
+        if (node == null)
+            return (new Node(key));
+ 
+        if (key.getNome().compareToIgnoreCase(node.cliente.getNome()) < 0)
+            node.left = insert(node.left, key);
+        else if (key.getNome().compareToIgnoreCase(node.cliente.getNome()) > 0)
+            node.right = insert(node.right, key);
+        else // Duplicate keys not allowed
             return node;
  
-        node.setHeight(1 + max(height(node.getLeft()),
-        height(node.getRight())));
+        /* 2. Update height of this ancestor node */
+        node.height = 1 + max(height(node.left),
+                              height(node.right));
  
-
+        /* 3. Get the balance factor of this ancestor
+              node to check whether this node became
+              unbalanced */
         int balance = getBalance(node);
  
-        if (balance > 1 && key < node.getLeft().getKey())
+        // If this node becomes unbalanced, then there
+        // are 4 cases Left Left Case
+        if (balance > 1 && key.getNome().compareToIgnoreCase(node.cliente.getNome()) < 0)
             return rightRotate(node);
  
-        if (balance < -1 && key > node.getRight().getKey())
+        // Right Right Case
+        if (balance < -1 && key.getNome().compareToIgnoreCase(node.cliente.getNome()) > 0)
             return leftRotate(node);
  
-        if (balance > 1 && key > node.getLeft().getKey())
-        {
-            node.setLeft(leftRotate(node.getLeft()));
+        // Left Right Case
+        if (balance > 1 && key.getNome().compareToIgnoreCase(node.cliente.getNome()) < 0) {
+            node.left = leftRotate(node.left);
             return rightRotate(node);
         }
  
-        if (balance < -1 && key < node.getRight().getKey())
-        {
-            node.setRight(rightRotate(node.getRight()));
+        // Right Left Case
+        if (balance < -1 && 0>key.getNome().compareToIgnoreCase(node.cliente.getNome())) {
+            node.right = rightRotate(node.right);
             return leftRotate(node);
         }
  
+        /* return the (unchanged) node pointer */
         return node;
     }
  
-    Pizzaria minValueNode(Pizzaria node)
-    {
-        Pizzaria current = node;
- 
-        while (current.getLeft() != null)
-        current = current.getLeft();
- 
-        return current;
-    }
- 
-    Pizzaria deleteNode(Pizzaria root, int key)
-    {
-
-        if (root == null)
-            return root;
- 
-        if (key < root.getKey())
-            root.setLeft(deleteNode(root.getLeft(), key));
- 
-        else if (key > root.getKey())
-            root.setRight(deleteNode(root.getRight(), key));
- 
-        else
-        {
- 
-            if ((root.getLeft() == null) || (root.getRight() == null))
-            {
-                Pizzaria temp = null;
-                if (temp == root.getLeft())
-                    temp = root.getRight();
-                else
-                    temp = root.getLeft();
- 
-                if (temp == null)
-                {
-                    temp = root;
-                    root = null;
-                }
-                else 
-                    root = temp;
-                                
-            }
-            else
-            {
- 
-             
-                Pizzaria temp = minValueNode(root.getRight());
- 
-                root.setKey(temp.getKey());
- 
-                root.setRight(deleteNode(root.getRight(), temp.getKey()));
-            }
-        }
- 
-        if (root == null)
-            return root;
- 
-        root.setHeight(max(height(root.getLeft()), height(root.getRight())) + 1);
- 
-        int balance = getBalance(root);
- 
-        if (balance > 1 && getBalance(root.getLeft()) >= 0)
-            return rightRotate(root);
- 
-        if (balance > 1 && getBalance(root.getLeft()) < 0)
-        {
-            root.setLeft(leftRotate(root.getLeft()));
-            return rightRotate(root);
-        }
- 
-        if (balance < -1 && getBalance(root.getRight()) <= 0)
-            return leftRotate(root);
- 
-        if (balance < -1 && getBalance(root.getRight()) > 0)
-        {
-            root.setRight(rightRotate(root.getRight()));
-            return leftRotate(root);
-        }
- 
-        return root;
-    }
- 
-    void preOrder(Pizzaria node)
-    {
-        if (node != null)
-        {
-            System.out.print(node.getKey() + " ");
-            preOrder(node.getLeft());
-            preOrder(node.getRight());
+    // A utility function to print preorder traversal
+    // of the tree.
+    // The function also prints height of every node
+    public void preOrder(Node node) {
+       
+        if (node != null) {
+            preOrder(node.left);
+            System.out.println(node.cliente.toString() + " ");
+            preOrder(node.right);
         }
     }
 }
