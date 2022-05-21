@@ -1,46 +1,19 @@
 package Model;
 
-class Node {
-    private int key, height;
-    private Node left, right;
- 
-    Node(int d) {
-        setKey(d);
-        height = 1;
+import Model.empresa.Cliente;
+
+public class Node {
+    public Cliente cliente;
+    public int height;
+    public Node left,right;
+
+    public Node(Cliente cliente){
+        this.height = 1;
+        this.cliente = cliente;
     }
 
-    public void setKey(int key) {
-        this.key = key;
+    @Override
+    public String toString() {
+        return "Node [node=" + cliente.toString() + "]";
     }
-
-    public int getKey() {
-        return key;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public Node getLeft() {
-        return left;
-    }
-
-    public void setLeft(Node left) {
-        this.left = left;
-    }
-
-    public Node getRight() {
-        return right;
-    }
-
-    public void setRight(Node right) {
-        this.right = right;
-    }
-
-    
 }
- 

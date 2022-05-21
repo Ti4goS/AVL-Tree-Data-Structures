@@ -1,0 +1,87 @@
+package Model.empresa;
+
+import Model.infos.Logradouro;
+import Controller.Tree;
+
+public class Empresa {
+    private String nomeFantasia;
+    private String cnpj;
+    private String nomeRepresentante;
+    private String tipoDeEmpresa;
+    private Logradouro endereco;
+    private String email;
+    public Tree tree;
+    
+    public Empresa(String nomeFantasia, String cnpj, String nomeRepresentante, String tipoDeEmpresa, Logradouro endereco,
+            String email, Tree tree) {
+        this.nomeFantasia = nomeFantasia;
+        this.cnpj = cnpj;
+        this.nomeRepresentante = nomeRepresentante;
+        this.tipoDeEmpresa = tipoDeEmpresa;
+        this.endereco = endereco;
+        this.email = email;
+        this.tree = tree;
+    }
+
+    public String getNomeFantasia() {
+        return nomeFantasia;
+    }
+
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getNomeRepresentante() {
+        return nomeRepresentante;
+    }
+
+    public void setNomeRepresentante(String nomeRepresentante) {
+        this.nomeRepresentante = nomeRepresentante;
+    }
+
+    public String getTipoDeEmpresa() {
+        return tipoDeEmpresa;
+    }
+
+    public void setTipoDeEmpresa(String tipoDeEmpresa) {
+        this.tipoDeEmpresa = tipoDeEmpresa;
+    }
+
+    public Logradouro getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Logradouro endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Tree getTree() {
+        return tree;
+    }
+
+    public void setTree(Tree tree) {
+        this.tree = tree;
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa [cnpj=" + cnpj + ", email=" + email + ", endereco=" + endereco + ", nomeFantasia="
+                + nomeFantasia + ", nomeRepresentante=" + nomeRepresentante + ", tipoDeEmpresa=" + tipoDeEmpresa + "]";
+    }
+}
