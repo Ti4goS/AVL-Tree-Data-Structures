@@ -101,7 +101,7 @@ public class Empresa {
         return produtos;
     }
 
-    public void setPduto(Produto prod) {
+    public void setProduto(Produto prod) {
         this.produtos.add(prod);
     }
 

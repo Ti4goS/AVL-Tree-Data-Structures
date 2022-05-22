@@ -7,6 +7,10 @@ import Model.empresa.Cliente;
 public class Tree{
     public Node root;
 
+    public Tree(){
+        this.root = null;
+    }
+
 
     // A utility function to get the height of the tree
     public int height(Node N) {

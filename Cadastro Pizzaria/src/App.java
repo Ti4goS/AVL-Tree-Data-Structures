@@ -48,6 +48,11 @@ public class App {
                     ReadFile.readDB();
                     break;
 
+                case 5:
+                    newProduto = JOptionPane.showInputDialog(null, "Informe o nome do produto a ser cadastrado");
+                     valor  = Double.parseDouble(JOptionPane.showInputDialog(null, "Informe o valor do produto cadastrado"));
+                    EmpresaController.empresa.setProduto(new Produto(valor, newProduto)); 
+                    break;
                 case 100:
                     WriteFile wf = new WriteFile(EmpresaController.empresa);
                     return;

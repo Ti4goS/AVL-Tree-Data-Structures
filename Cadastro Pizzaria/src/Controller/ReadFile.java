@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import Model.empresa.Cliente;
 import Model.empresa.Empresa;
 import Model.empresa.Produto;
 import Model.infos.Logradouro;
@@ -83,12 +84,20 @@ public class ReadFile {
                         } catch (Exception e) {
                             valor = 0;
                         }
+
+                    EmpresaController.empresa.setProduto(new Produto(valor, nome));
+                }
+
+                if (line.equals("No Clients")) {
+                    reader.close();
+                    return;
                 }
 
                 if(line.contains("Cliente:")){
                     String nome = "";
                     String telefone = "";
                     String cpf = "";
+                    double totalGasto = 0;
                     int totalPedidos = 0;
                     String ultimoPedido = "";
                     double valorUltimoPedido = 0;
@@ -104,33 +113,57 @@ public class ReadFile {
                     if(line.contains("Telefone="))
                         telefone = getSubString(line, "Telefone=");
 
-                    if(line.contains("Nome="))
-                        nome = getSubString(line, "Nome=");
+                    if(line.contains("CPF="))
+                    cpf = getSubString(line, "CPF=");
 
-                    if(line.contains("Nome="))
-                        nome = getSubString(line, "Nome=");
+                    if(line.contains("TotalGasto="))
+                        try {
+                            totalGasto = Double.parseDouble(getSubString(line, "TotalGasto=")); 
+                        } catch (Exception e) {
+                            totalGasto = 0;
+                        }
+                        
+                    if(line.contains("TotalPedidos="))
+                        try {
+                            totalPedidos = Integer.parseInt(getSubString(line, "TotalPedidos="));
+                        } catch (Exception e) {
+                            totalPedidos = 0;
+                        }
+                    
+                    if(line.contains("UltimoPedido="))
+                        ultimoPedido = getSubString(line, "UltimoPedido=");
 
-                    if(line.contains("Nome="))
-                        nome = getSubString(line, "Nome=");
+                    if(line.contains("valorUltimoPedido="))
+                        try {
+                            valorUltimoPedido = Integer.parseInt(getSubString(line, "valorUltimoPedido="));
+                        } catch (Exception e) {
+                            valorUltimoPedido = 0;
+                        }
 
-                    if(line.contains("Nome="))
-                        nome = getSubString(line, "Nome=");
+                    if(line.contains("Rua="))
+                        rua = getSubString(line, "Rua=");
 
-                    if(line.contains("Nome="))
-                        nome = getSubString(line, "Nome=");
+                    if(line.contains("Numero="))
+                        try {
+                            numero = Integer.parseInt(getSubString(line, "Numero="));
+                        } catch (Exception e) {
+                            numero = 0;
+                        }
 
-                    if(line.contains("Nome="))
-                        nome = getSubString(line, "Nome=");
+                    if(line.contains("Bairro="))
+                        bairro = getSubString(line, "Bairro=");
 
-                    if(line.contains("Nome="))
-                        nome = getSubString(line, "Nome=");
+                    if(line.contains("Cidade="))
+                        cidade = getSubString(line, "Cidade=");
 
-                    if(line.contains("Nome="))
-                        nome = getSubString(line, "Nome=");
+                    if(line.contains("Estado="))
+                        estado = getSubString(line, "Estado=");
+
+                         EmpresaController.setRoot(new Cliente(telefone, new Logradouro(rua, numero, bairro, cidade, estado), nome, cpf, totalGasto, totalPedidos, ultimoPedido, valorUltimoPedido));
                 }
 
 
-                
+                System.out.println(EmpresaController.empresa.toString());
             }
         }catch(FileNotFoundException e){
             System.out.println("Banco de Dados não foi encontrado");
