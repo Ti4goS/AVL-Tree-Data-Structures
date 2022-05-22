@@ -1,5 +1,6 @@
 Empresa: Nome="primo" CNPJ="3456" email="nda" NomeRepresentante="dante" tipoDeEmpresa="me" Rua="av rivaldo" Numero= "0" Bairro="chiara" Cidade="chiara" Estado="chiara"
 Produto: Nome="coca" Preço="0,000000"
 Produto: Nome="pizza G" Preço="0,000000"
+Produto: Nome="Coca-Cola 1L" Preço="7,500000"
 Cliente: Nome="Tiago Santiago" Telefone="4567" CPF="34556" TotalGasto="0,000000" TotalPedidos="0" UltimoPedido="" valorUltimoPedido="0,000000" Rua="rua alt" Numero="538" Bairro="mamedes" Cidade="ita" Estado="SE" 
 Cliente: Nome="Alice Tavares" Telefone="4567" CPF="34556" TotalGasto="0,000000" TotalPedidos="0" UltimoPedido="" valorUltimoPedido="0,000000" Rua="rua alt" Numero="538" Bairro="mamedes" Cidade="ita" Estado="SE" 

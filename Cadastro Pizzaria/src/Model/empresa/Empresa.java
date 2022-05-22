@@ -110,4 +110,8 @@ public class Empresa {
         return "Empresa [cnpj=" + cnpj + ", email=" + email + ", endereco=" + endereco + ", nomeFantasia="
                 + nomeFantasia + ", nomeRepresentante=" + nomeRepresentante + ", tipoDeEmpresa=" + tipoDeEmpresa + "]";
     }
+
+    public boolean cadastrarProduto(String produto, double valor) {
+        return false;
+    }
 }
