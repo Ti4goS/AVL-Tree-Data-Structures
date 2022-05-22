@@ -5,6 +5,7 @@ import Model.empresa.Cliente;
 import Model.empresa.Empresa;
 import Model.empresa.Produto;
 import Model.infos.Logradouro;
+import View.Menu;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -40,6 +41,11 @@ public class App {
                 case 2:
                     empresa.toString();
                     empresa.tree.preOrder(empresa.tree.root);
+                    break;
+                case 3:
+                    Menu m = new Menu();
+                    
+                    
                     break;
 
                 case 100:
