@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import Model.Node;
 import Model.empresa.Empresa;
+import Model.empresa.Produto;
 
 public class WriteFile {
 
@@ -28,6 +29,10 @@ public class WriteFile {
                 empresa.getEndereco().getBairro(), empresa.getEndereco().getBairro(), empresa.getEndereco().getCidade(),
                 empresa.getEndereco().getEstado());
 
+
+        for (Produto p : empresa.getProdutos()) {
+            writeFile.printf("Produto: Nome=\"%s\" Preço=\"%f\"\n",p.getNome(),p.getValor());
+        }
         if (empresa.tree.root == null) {
             writeFile.printf("No Clients\n");
             writeFile.close();
@@ -42,7 +47,7 @@ public class WriteFile {
     private void writeClients(Node node) {
         if (node != null) {
             writeFile.printf(
-                    "Nome= \"%s\" Telefone=\"%s\" CPF=\"%s\" TotalGasto=\"%f\" TotalPedidos=\"%d\" UltimoPedido=\"%s\" valorUltimoPedido=\"%f\" Rua=\"%s\" Numero=\"%d\" Bairro=\"%s\" Cidade=\"%s\" Estado=\"%s\" \n",
+                    "Cliente: Nome= \"%s\" Telefone=\"%s\" CPF=\"%s\" TotalGasto=\"%f\" TotalPedidos=\"%d\" UltimoPedido=\"%s\" valorUltimoPedido=\"%f\" Rua=\"%s\" Numero=\"%d\" Bairro=\"%s\" Cidade=\"%s\" Estado=\"%s\" \n",
                     node.cliente.getNome(), node.cliente.getTelefone(), node.cliente.getCpf(),
                     node.cliente.getTotalGasto(), node.cliente.getTotalPedidos(), node.cliente.getUltimoPedido(),
                     node.cliente.getValorDoUltimoPedido(), node.cliente.getEndereco().getEndereço(),

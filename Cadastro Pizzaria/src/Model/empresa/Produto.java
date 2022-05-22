@@ -1,8 +1,5 @@
 package Model.empresa;
 
-import java.util.ArrayList;
-import java.util.Set;
-
 public class Produto {
 
     private String nome;

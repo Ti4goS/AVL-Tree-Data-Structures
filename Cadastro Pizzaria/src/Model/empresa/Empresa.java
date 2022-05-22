@@ -14,10 +14,24 @@ public class Empresa {
     private Logradouro endereco;
     private String email;
     public Tree tree;
-    private ArrayList <Produto> produtos = new ArrayList();
-    
-    public Empresa(String nomeFantasia, String cnpj, String nomeRepresentante, String tipoDeEmpresa, Logradouro endereco,
+    private ArrayList<Produto> produtos = new ArrayList<Produto>();
+
+    public Empresa(String nomeFantasia, String cnpj, String nomeRepresentante, String tipoDeEmpresa,
+            Logradouro endereco,
             String email, Tree tree, Produto prod) {
+        this.nomeFantasia = nomeFantasia;
+        this.cnpj = cnpj;
+        this.nomeRepresentante = nomeRepresentante;
+        this.tipoDeEmpresa = tipoDeEmpresa;
+        this.endereco = endereco;
+        this.email = email;
+        this.tree = tree;
+        produtos.add(prod);
+    }
+
+    public Empresa(String nomeFantasia, String cnpj, String nomeRepresentante, String tipoDeEmpresa,
+            Logradouro endereco,
+            String email, Tree tree) {
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
         this.nomeRepresentante = nomeRepresentante;
@@ -82,12 +96,13 @@ public class Empresa {
     public void setTree(Tree tree) {
         this.tree = tree;
     }
-    public ArrayList <Produto> getProdutos() {
+
+    public ArrayList<Produto> getProdutos() {
         return produtos;
     }
 
     public void setPduto(Produto prod) {
-        this.produtos.add (prod);
+        this.produtos.add(prod);
     }
 
     @Override

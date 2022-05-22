@@ -28,7 +28,7 @@ public class App {
                     Tree tree = new Tree();
     
 
-                    EmpresaController.empresa = new Empresa(nomeFantasia, cnpj, nomeRepresentante, tipoDeEmpresa, endereco, email, tree);
+                    EmpresaController.empresa = new Empresa(nomeFantasia, cnpj, nomeRepresentante, tipoDeEmpresa, endereco, email, tree, novoProduto);
 
                     break;
                 case 1:

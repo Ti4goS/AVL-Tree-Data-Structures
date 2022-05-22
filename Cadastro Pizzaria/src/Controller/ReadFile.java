@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import Model.empresa.Empresa;
+import Model.empresa.Produto;
 import Model.infos.Logradouro;
 
 public class ReadFile {
@@ -50,12 +51,12 @@ public class ReadFile {
                     if(line.contains("Rua="))
                         rua = getSubString(line,"Rua=");
 
-                    try {
-                        if(line.contains("Numero="))
-                        numero = Integer.parseInt(getSubString(line,"Numero="));
-                    } catch (Exception e) {
-                        numero = 00;
-                    }    
+                    if(line.contains("Numero="))
+                        try {
+                            numero = Integer.parseInt(getSubString(line,"Numero="));
+                        } catch (Exception e) {
+                            numero = 00;
+                        }    
                     
                     if(line.contains("Bairro="))
                         bairro = getSubString(line,"Bairro=");
@@ -66,8 +67,69 @@ public class ReadFile {
                     if(line.contains("Estado="))
                         estado = getSubString(line,"Estado=");  
                         
-                    EmpresaController.empresa = new Empresa(nome, cnpj, nomeRepresentante, tipoDeEmpresa, new Logradouro(rua, numero, bairro, cidade, estado), email, null);
+                    EmpresaController.empresa = new Empresa(nome, cnpj, nomeRepresentante, tipoDeEmpresa, new Logradouro(rua, numero, bairro, cidade, estado), email, new Tree());
                 }
+
+                if(line.contains("Produto:")){
+                    String nome = "";
+                    double valor = 0;
+
+                    if(line.contains("Nome="))
+                        nome = getSubString(line, "Nome=");
+
+                    if(line.contains("Preço="))
+                        try {
+                            valor = Double.parseDouble(getSubString(line, "Preço="));
+                        } catch (Exception e) {
+                            valor = 0;
+                        }
+                }
+
+                if(line.contains("Cliente:")){
+                    String nome = "";
+                    String telefone = "";
+                    String cpf = "";
+                    int totalPedidos = 0;
+                    String ultimoPedido = "";
+                    double valorUltimoPedido = 0;
+                    String rua = "";
+                    int numero = 0;
+                    String bairro = "";
+                    String cidade = "";
+                    String estado = "";
+
+                    if(line.contains("Nome="))
+                        nome = getSubString(line, "Nome=");
+
+                    if(line.contains("Telefone="))
+                        telefone = getSubString(line, "Telefone=");
+
+                    if(line.contains("Nome="))
+                        nome = getSubString(line, "Nome=");
+
+                    if(line.contains("Nome="))
+                        nome = getSubString(line, "Nome=");
+
+                    if(line.contains("Nome="))
+                        nome = getSubString(line, "Nome=");
+
+                    if(line.contains("Nome="))
+                        nome = getSubString(line, "Nome=");
+
+                    if(line.contains("Nome="))
+                        nome = getSubString(line, "Nome=");
+
+                    if(line.contains("Nome="))
+                        nome = getSubString(line, "Nome=");
+
+                    if(line.contains("Nome="))
+                        nome = getSubString(line, "Nome=");
+
+                    if(line.contains("Nome="))
+                        nome = getSubString(line, "Nome=");
+                }
+
+
                 
             }
         }catch(FileNotFoundException e){
