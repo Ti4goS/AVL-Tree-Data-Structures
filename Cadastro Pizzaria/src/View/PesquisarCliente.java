@@ -69,6 +69,8 @@ public class PesquisarCliente extends JPanel {
     CadastroPessoaFisica.setMargin(new Insets(10, 10, 10, 10));
     add(CadastroPessoaFisica,c);
 
+    //aaa
+
 
 
 
