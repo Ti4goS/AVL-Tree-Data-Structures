@@ -8,9 +8,9 @@ public class Logradouro {
     private String estado;
 
     
-    public Logradouro(String endereço, int d, String bairro, String cidade, String estado) {
+    public Logradouro(String endereço, int numero, String bairro, String cidade, String estado) {
         this.endereço = endereço;
-        this.numero = d;
+        this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
