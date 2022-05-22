@@ -9,9 +9,11 @@ import View.Menu;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        int op = 0;
+       
+       Menu.main(args);
+        //int op = 0;
         
-        while (op!=100) {
+       /*while (op!=100) {
             op = Integer.parseInt(JOptionPane.showInputDialog("op"));
 
             switch (op) {
@@ -54,13 +56,18 @@ public class App {
                     
                     break;
 
+                case 5:
+                    newProduto = JOptionPane.showInputDialog(null, "Informe o nome do produto a ser cadastrado");
+                     valor  = Double.parseDouble(JOptionPane.showInputDialog(null, "Informe o valor do produto cadastrado"));
+                    EmpresaController.empresa.setProduto(new Produto(valor, newProduto)); 
+                    break;
                 case 100:
                     WriteFile wf = new WriteFile(EmpresaController.empresa);
                     return;
                 default:
                     break;
             }
-        }
+        }*/
         
     }
 }

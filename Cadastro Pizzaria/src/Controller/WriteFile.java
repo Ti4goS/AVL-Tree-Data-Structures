@@ -47,7 +47,7 @@ public class WriteFile {
     private void writeClients(Node node) {
         if (node != null) {
             writeFile.printf(
-                    "Cliente: Nome= \"%s\" Telefone=\"%s\" CPF=\"%s\" TotalGasto=\"%f\" TotalPedidos=\"%d\" UltimoPedido=\"%s\" valorUltimoPedido=\"%f\" Rua=\"%s\" Numero=\"%d\" Bairro=\"%s\" Cidade=\"%s\" Estado=\"%s\" \n",
+                    "Cliente: Nome=\"%s\" Telefone=\"%s\" CPF=\"%s\" TotalGasto=\"%f\" TotalPedidos=\"%d\" UltimoPedido=\"%s\" valorUltimoPedido=\"%f\" Rua=\"%s\" Numero=\"%d\" Bairro=\"%s\" Cidade=\"%s\" Estado=\"%s\" \n",
                     node.cliente.getNome(), node.cliente.getTelefone(), node.cliente.getCpf(),
                     node.cliente.getTotalGasto(), node.cliente.getTotalPedidos(), node.cliente.getUltimoPedido(),
                     node.cliente.getValorDoUltimoPedido(), node.cliente.getEndereco().getEndereço(),
