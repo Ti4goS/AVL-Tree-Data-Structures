@@ -1,21 +1,27 @@
 package View;
 
-import java.awt.LayoutManager;
+import javax.swing.JPanel;
+
+import Model.empresa.Cliente;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 import javax.swing.*;
+
 import javax.swing.border.Border;
 
-public class MostrarCliente extends JPanel {
 
-    public MostrarCliente() {
-        super(new BorderLayout());
-        cadastrarCliente();
+public class EditarCliente extends JPanel{
+private Cliente cliente;
+
+     public EditarCliente(Cliente cliente){
+        super(new BorderLayout()); 
+            this.cliente=cliente;
+        editarCliente();
     };
 
-    private void cadastrarCliente() {
+    private void editarCliente(){
         setPreferredSize(new Dimension(800, 500));
         GridBagConstraints c = new GridBagConstraints();
         setLayout(new GridLayout(9, 2));
@@ -225,7 +231,7 @@ public class MostrarCliente extends JPanel {
 
         //Buttons
         
-        JButton back = new JButton("Cancelar");
+        JButton back = new JButton("Voltar");
         back.setBounds(100, 200, 25, 25);
         back.setBackground(Color.WHITE);
         back.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
@@ -239,16 +245,16 @@ public class MostrarCliente extends JPanel {
         c.gridx = 5;
         c.gridy = 9;
 
-        JButton save = new JButton("Salvar");
-        save.setBounds(100, 200, 25, 25);
-        save.setBackground(Color.WHITE);
-        save.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-        save.setForeground(Color.BLUE);
-        save.setBorder(border);
-        add(save, c);
+        JButton pedido = new JButton("Realizar pedido");
+        pedido.setBounds(100, 200, 25, 25);
+        pedido.setBackground(Color.WHITE);
+        pedido.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+        pedido.setForeground(Color.BLUE);
+        pedido.setBorder(border);
+        add(pedido, c);
 
 
     }
 
-    
-}
+
+ }
