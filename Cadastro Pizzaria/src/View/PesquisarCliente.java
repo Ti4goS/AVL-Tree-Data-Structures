@@ -16,12 +16,13 @@ public class PesquisarCliente extends JPanel {
     };
 
    private void pesquisarCliente(){
-    GridBagConstraints c = new GridBagConstraints();
-    Border border = BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(10, 2, 10, 20),
+    Border border = BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(50, 2, 50, 20),
     BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
-  
 
-    //Labels e Text
+    setPreferredSize(new Dimension(800, 250));
+    setBackground(Color.WHITE);
+    GridBagConstraints c = new GridBagConstraints();
+    setLayout(new GridLayout(3, 2));
 
     JLabel Name = new JLabel("Nome:", JLabel.CENTER);
     Name.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
@@ -42,8 +43,6 @@ public class PesquisarCliente extends JPanel {
     nameText.setBorder(border);
     nameText.setMargin(new Insets(10, 10, 10, 10));
     add(nameText,c);
-
-
 
     c.fill = GridBagConstraints.HORIZONTAL;
     c.gridx = 0;
@@ -69,37 +68,29 @@ public class PesquisarCliente extends JPanel {
     CadastroPessoaFisica.setMargin(new Insets(10, 10, 10, 10));
     add(CadastroPessoaFisica,c);
 
-    //aaa
-
-
-
-
-    //
-
-    //Buttons
-  
-    JButton back = new JButton("Cancelar");
+    JButton back = new JButton("Voltar");
     back.setBounds(100, 200, 25, 25);
     back.setBackground(Color.WHITE);
     back.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
     back.setForeground(Color.RED);
     back.setBorder(border);
+   // back.addActionListener(voltarPrincipal);
     add(back, c);
     
+    // Botoes
     c.fill = GridBagConstraints.HORIZONTAL;
     c.gridx = 5;
     c.gridy = 9;
 
-    JButton save = new JButton("Pesquisar");
+    JButton save = new JButton("Procurar");
     save.setBounds(100, 200, 25, 25);
     save.setBackground(Color.WHITE);
     save.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
     save.setForeground(Color.BLUE);
     save.setBorder(border);
     add(save, c);
-
-    //
-
-
    }
+
+
+   
 }

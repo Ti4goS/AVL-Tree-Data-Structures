@@ -250,7 +250,6 @@ public class Menu extends JFrame {
         JPanel main = new JPanel(new BorderLayout());
 
         main.add(titulo(), BorderLayout.NORTH);
-
         main.add(new PesquisarCliente(), BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
 
