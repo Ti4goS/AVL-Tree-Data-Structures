@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import javax.swing.border.Border;
 
-import Controller.EmpresaController;
+import Controller.EmpresaController; 
 import Model.empresa.Produto;
 
 import java.awt.*;
