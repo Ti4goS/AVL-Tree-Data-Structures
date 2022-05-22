@@ -5,7 +5,9 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import Controller.EmpresaController;
+
 import Model.empresa.Cliente;
+
 import Model.empresa.Produto;
 
 import java.awt.*;
@@ -174,7 +176,9 @@ public class Menu extends JFrame {
         save.setBounds(350, 400, 50, 50);
         save.setBackground(Color.WHITE);
         save.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+
         save.setForeground(Color.BLUE);
+
         save.addActionListener(new ActionListener() {
 
             @Override
@@ -240,6 +244,8 @@ public class Menu extends JFrame {
         JPanel main = new JPanel(new BorderLayout());
 
         main.add(titulo(), BorderLayout.NORTH);
+
+
         main.add(botoes(), BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
 
@@ -250,6 +256,7 @@ public class Menu extends JFrame {
         JPanel main = new JPanel(new BorderLayout());
 
         main.add(titulo(), BorderLayout.NORTH);
+
         main.add(cadastrarProduto(), BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
 
@@ -287,6 +294,7 @@ public class Menu extends JFrame {
         }
     };
 
+
     private ActionListener criarCliente = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -317,6 +325,7 @@ public class Menu extends JFrame {
 
     private static void createAndShowGUI() {
 
+      
         frame = new Menu("Pizza's Delivery");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

@@ -2,6 +2,7 @@ package Controller;
 
 import Model.empresa.Cliente;
 import Model.empresa.Empresa;
+import Model.empresa.Produto;
 
 public class EmpresaController {
     public static Empresa empresa;
