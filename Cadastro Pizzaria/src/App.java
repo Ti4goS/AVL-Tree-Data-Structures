@@ -5,12 +5,15 @@ import Model.empresa.Cliente;
 import Model.empresa.Empresa;
 import Model.empresa.Produto;
 import Model.infos.Logradouro;
+import View.Menu;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        int op = 0;
+       
+       Menu.main(args);
+        //int op = 0;
         
-        while (op!=100) {
+       /*while (op!=100) {
             op = Integer.parseInt(JOptionPane.showInputDialog("op"));
 
             switch (op) {
@@ -59,7 +62,7 @@ public class App {
                 default:
                     break;
             }
-        }
+        }*/
         
     }
 }
