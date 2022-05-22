@@ -15,7 +15,10 @@ public class App {
         
        /*while (op!=100) {
             op = Integer.parseInt(JOptionPane.showInputDialog("op"));
+           
 
+            Menu menu = new Menu();
+            
             switch (op) {
                 case 0:
                     String nomeFantasia = JOptionPane.showInputDialog("Nome fantasia");
@@ -50,7 +53,7 @@ public class App {
                 case 3:
                     ReadFile.readDB();
                     break;
-                case 3:
+                case 4:
                     Menu m = new Menu();
                     
                     

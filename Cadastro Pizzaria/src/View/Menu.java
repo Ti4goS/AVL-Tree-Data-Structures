@@ -106,7 +106,7 @@ public class Menu extends JFrame {
     
 
     private static void createAndShowGUI() {
-        frame = new Menu("Operador de autômatos");
+        frame = new Menu("Projeto Grupo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         home = frame.buildHomeScreen();
@@ -115,6 +115,8 @@ public class Menu extends JFrame {
         frame.setVisible(true);
     }
 
+ 
+
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -122,5 +124,6 @@ public class Menu extends JFrame {
             }
         });
     }
+
 
 }
