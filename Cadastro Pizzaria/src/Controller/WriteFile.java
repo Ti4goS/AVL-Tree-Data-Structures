@@ -22,8 +22,8 @@ public class WriteFile {
         }
 
         writeFile.printf(
-                "Empresa: Nome=\"%s\" email=\"%s\" NomeRepresentante=\"%s\" tipoDeEmpresa=\"%s\" Rua=\"%s\" Numero= \"%d\" Bairro=\"%s\" Cidade=\"%s\" Estado=\"%s\"\n",
-                empresa.getNomeFantasia(), empresa.getEmail(), empresa.getNomeRepresentante(),
+                "Empresa: Nome=\"%s\" CNPJ=\"%s\" email=\"%s\" NomeRepresentante=\"%s\" tipoDeEmpresa=\"%s\" Rua=\"%s\" Numero= \"%d\" Bairro=\"%s\" Cidade=\"%s\" Estado=\"%s\"\n",
+                empresa.getNomeFantasia(),empresa.getCnpj(), empresa.getEmail(), empresa.getNomeRepresentante(),
                 empresa.getTipoDeEmpresa(), empresa.getEndereco().getEndereço(), empresa.getEndereco().getNumero(),
                 empresa.getEndereco().getBairro(), empresa.getEndereco().getBairro(), empresa.getEndereco().getCidade(),
                 empresa.getEndereco().getEstado());
