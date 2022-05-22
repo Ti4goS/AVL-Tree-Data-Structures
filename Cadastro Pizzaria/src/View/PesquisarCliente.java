@@ -8,10 +8,11 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 public class PesquisarCliente extends JPanel {
+    private Menu frame;
     
-    
-    public PesquisarCliente() {
+    public PesquisarCliente(Menu frame) {
         super(new BorderLayout());
+        this.frame = frame;
         pesquisarCliente();
     };
 
@@ -74,7 +75,7 @@ public class PesquisarCliente extends JPanel {
     back.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
     back.setForeground(Color.RED);
     back.setBorder(border);
-   // back.addActionListener(voltarPrincipal);
+    back.addActionListener(voltarPrincipal);
     add(back, c);
     
     // Botoes
@@ -92,5 +93,11 @@ public class PesquisarCliente extends JPanel {
    }
 
 
-   
+   private ActionListener voltarPrincipal = new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        frame.setContentPane(frame.buildHomeScreen());
+        frame.setVisible(true);
+    }
+};
 }

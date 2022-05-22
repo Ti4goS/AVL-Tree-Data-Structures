@@ -87,7 +87,7 @@ public class Menu extends JFrame {
         content.add(createProduct, BorderLayout.CENTER);
 
         JButton searchClient = new JButton("Procurar cliente");
-        searchClient.addActionListener(pesquisarCliente);
+        searchClient.addActionListener(editarCliente);
         searchClient.setBounds(450, 400, 50, 50);
         searchClient.setBackground(Color.DARK_GRAY);
         searchClient.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
@@ -257,7 +257,7 @@ public class Menu extends JFrame {
         JPanel main = new JPanel(new BorderLayout());
 
         main.add(titulo(), BorderLayout.NORTH);
-        main.add(new PesquisarCliente(), BorderLayout.CENTER);
+        main.add(new PesquisarCliente(frame), BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
 
         return main;
@@ -290,7 +290,7 @@ public class Menu extends JFrame {
         Cliente c = EmpresaController.empresa.getTree().root.cliente;
         
         main.add(titulo(), BorderLayout.NORTH);
-        main.add(new EditarCliente(c,frame),BorderLayout.CENTER);
+        main.add(new PesquisarCliente(frame),BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
 
         return main;
