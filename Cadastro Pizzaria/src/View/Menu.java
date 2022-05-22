@@ -5,7 +5,9 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import Controller.EmpresaController;
-import Controller.ReadFile;
+
+import Model.empresa.Cliente;
+
 import Model.empresa.Produto;
 
 import java.awt.*;
@@ -71,6 +73,7 @@ public class Menu extends JFrame {
         createClient.setBackground(Color.DARK_GRAY);
         createClient.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
         createClient.setForeground(Color.WHITE);
+        createClient.addActionListener(criarCliente);
         createClient.setBorder(BorderFactory.createMatteBorder(30, 25, 30, 575, Color.WHITE));
         content.add(createClient, BorderLayout.CENTER);
 
@@ -88,6 +91,7 @@ public class Menu extends JFrame {
         searchClient.setBackground(Color.DARK_GRAY);
         searchClient.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
         searchClient.setForeground(Color.WHITE);
+        searchClient.addActionListener(editarCliente);
         searchClient.setBorder(BorderFactory.createMatteBorder(30, 25, 30, 575, Color.WHITE));
         content.add(searchClient, BorderLayout.CENTER);
 
@@ -159,7 +163,7 @@ public class Menu extends JFrame {
         back.setBounds(350, 400, 50, 50);
         back.setBackground(Color.WHITE);
         back.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-        back.setForeground(Color.BLACK);
+        back.setForeground(Color.RED);
         back.setBorder(border);
         back.addActionListener(voltarPrincipal);
         content.add(back, c);
@@ -172,7 +176,9 @@ public class Menu extends JFrame {
         save.setBounds(350, 400, 50, 50);
         save.setBackground(Color.WHITE);
         save.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-        save.setForeground(Color.BLACK);
+
+        save.setForeground(Color.BLUE);
+
         save.addActionListener(new ActionListener() {
 
             @Override
@@ -239,6 +245,7 @@ public class Menu extends JFrame {
 
         main.add(titulo(), BorderLayout.NORTH);
 
+
         main.add(botoes(), BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
 
@@ -256,11 +263,53 @@ public class Menu extends JFrame {
         return main;
     }
 
+    public JPanel buildCadastroCliente() {
+        JPanel main = new JPanel(new BorderLayout());
+
+        main.add(titulo(), BorderLayout.NORTH);
+        main.add(new MostrarCliente(), BorderLayout.CENTER);
+        main.add(rodape(), BorderLayout.SOUTH);
+
+        return main;
+    }
+
+    public JPanel selecionaProduto() {
+        JPanel main = new JPanel(new BorderLayout());
+        Cliente c = EmpresaController.empresa.getTree().root.cliente;
+        
+        main.add(titulo(), BorderLayout.NORTH);
+        main.add(new AddProdutoView(c,frame,home),BorderLayout.CENTER);
+        main.add(rodape(), BorderLayout.SOUTH);
+
+        return main;
+    }
+
     private ActionListener criarProduto = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             frame.remove(buildHomeScreen());
             frame.setContentPane(buildCadastroProduto());
+            frame.validate();
+            frame.setVisible(true);
+        }
+    };
+
+
+    private ActionListener criarCliente = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            frame.remove(buildHomeScreen());
+            frame.setContentPane(buildCadastroCliente());
+            frame.validate();
+            frame.setVisible(true);
+        }
+    };
+
+    private ActionListener editarCliente = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            frame.remove(buildHomeScreen());
+            frame.setContentPane(selecionaProduto());
             frame.validate();
             frame.setVisible(true);
         }
@@ -275,6 +324,8 @@ public class Menu extends JFrame {
     };
 
     private static void createAndShowGUI() {
+
+      
         frame = new Menu("Pizza's Delivery");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -284,6 +335,8 @@ public class Menu extends JFrame {
         frame.setVisible(true);
     }
 
+ 
+
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -291,5 +344,6 @@ public class Menu extends JFrame {
             }
         });
     }
+
 
 }

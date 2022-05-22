@@ -33,6 +33,7 @@ public class WriteFile {
         for (Produto p : empresa.getProdutos()) {
             writeFile.printf("Produto: Nome=\"%s\" Preço=\"%f\"\n",p.getNome(),p.getValor());
         }
+        
         if (empresa.tree.root == null) {
             writeFile.printf("No Clients\n");
             writeFile.close();
