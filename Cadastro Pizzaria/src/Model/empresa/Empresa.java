@@ -1,6 +1,9 @@
 package Model.empresa;
 
 import Model.infos.Logradouro;
+
+import java.util.ArrayList;
+
 import Controller.Tree;
 
 public class Empresa {
@@ -11,9 +14,10 @@ public class Empresa {
     private Logradouro endereco;
     private String email;
     public Tree tree;
+    private ArrayList <Produto> produtos = new ArrayList();
     
     public Empresa(String nomeFantasia, String cnpj, String nomeRepresentante, String tipoDeEmpresa, Logradouro endereco,
-            String email, Tree tree) {
+            String email, Tree tree, Produto prod) {
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
         this.nomeRepresentante = nomeRepresentante;
@@ -77,6 +81,13 @@ public class Empresa {
 
     public void setTree(Tree tree) {
         this.tree = tree;
+    }
+    public ArrayList <Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setPduto(Produto prod) {
+        this.produtos.add (prod);
     }
 
     @Override

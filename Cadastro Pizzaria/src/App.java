@@ -3,6 +3,7 @@ import javax.swing.JOptionPane;
 import Controller.*;
 import Model.empresa.Cliente;
 import Model.empresa.Empresa;
+import Model.empresa.Produto;
 import Model.infos.Logradouro;
 
 public class App {
@@ -18,11 +19,16 @@ public class App {
                     String nomeRepresentante = JOptionPane.showInputDialog("nomeRepresentante");
                     String tipoDeEmpresa = JOptionPane.showInputDialog("tipoDeEmpresa");
                     String cnpj = JOptionPane.showInputDialog("cnpj");
+                    String newProduto = JOptionPane.showInputDialog(null, "Informe o nome do produto a ser cadastrado");
+                    Double valor  = Double.parseDouble(JOptionPane.showInputDialog(null, "Informe o valor do produto cadastrado"));
+                    Produto novoProduto = new Produto(valor, newProduto);
                     Logradouro endereco = new Logradouro(JOptionPane.showInputDialog("endereço"), Integer.parseInt(JOptionPane.showInputDialog("numero")), JOptionPane.showInputDialog("bairro"), JOptionPane.showInputDialog("cidade"), JOptionPane.showInputDialog("estado"));
                     String email = JOptionPane.showInputDialog("email");
                     Tree tree = new Tree();
     
+
                     EmpresaController.empresa = new Empresa(nomeFantasia, cnpj, nomeRepresentante, tipoDeEmpresa, endereco, email, tree);
+
                     break;
                 case 1:
                     String telefone = JOptionPane.showInputDialog("telefone");
@@ -36,11 +42,12 @@ public class App {
                     EmpresaController.empresa.toString();
                     EmpresaController.empresa.tree.preOrder(EmpresaController.empresa.tree.root);
                     break;
-                
-                
+
+                         
                 case 3:
                     ReadFile.readDB();
                     break;
+
                 case 100:
                     WriteFile wf = new WriteFile(EmpresaController.empresa);
                     return;
