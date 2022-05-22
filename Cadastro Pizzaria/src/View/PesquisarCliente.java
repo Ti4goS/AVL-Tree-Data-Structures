@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import Controller.EmpresaController;
+import Model.empresa.Cliente;
+
 public class PesquisarCliente extends JPanel {
     private Menu frame;
     
@@ -62,7 +65,7 @@ public class PesquisarCliente extends JPanel {
     c.gridx = 1;
     c.gridy = 1;
 
-    JTextField CadastroPessoaFisica = new JTextField(11);
+    JTextField CadastroPessoaFisica = new JTextField("teste");
     CadastroPessoaFisica.setPreferredSize(new Dimension(20, 10));
     CadastroPessoaFisica.setFont(new Font("Arial", Font.BOLD, 14));
     CadastroPessoaFisica.setBorder(border);
@@ -89,6 +92,7 @@ public class PesquisarCliente extends JPanel {
     save.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
     save.setForeground(Color.BLUE);
     save.setBorder(border);
+    save.addActionListener(procurar);
     add(save, c);
    }
 
@@ -99,5 +103,17 @@ public class PesquisarCliente extends JPanel {
         frame.setContentPane(frame.buildHomeScreen());
         frame.setVisible(true);
     }
-};
+    };
+
+    private ActionListener procurar = new ActionListener() {
+        
+    
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Cliente found = EmpresaController.procuraCliente();
+
+            frame.setContentPane(new EditarCliente(found, frame));
+            frame.setVisible(true);
+        }
+    };
 }

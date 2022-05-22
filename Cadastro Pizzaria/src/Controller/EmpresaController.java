@@ -11,4 +11,10 @@ public class EmpresaController {
         empresa.tree.root = empresa.tree.insert(empresa.tree.root, c);
     }
 
+
+    public static Cliente procuraCliente() {
+        
+
+        return null;
+    }
 }
