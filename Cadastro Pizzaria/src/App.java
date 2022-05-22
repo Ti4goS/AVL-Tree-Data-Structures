@@ -50,6 +50,11 @@ public class App {
                 case 3:
                     ReadFile.readDB();
                     break;
+                case 3:
+                    Menu m = new Menu();
+                    
+                    
+                    break;
 
                 case 5:
                     newProduto = JOptionPane.showInputDialog(null, "Informe o nome do produto a ser cadastrado");
