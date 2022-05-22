@@ -87,6 +87,7 @@ public class Menu extends JFrame {
         content.add(createProduct, BorderLayout.CENTER);
 
         JButton searchClient = new JButton("Procurar cliente");
+        searchClient.addActionListener(pesquisarCliente);
         searchClient.setBounds(450, 400, 50, 50);
         searchClient.setBackground(Color.DARK_GRAY);
         searchClient.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
@@ -252,6 +253,17 @@ public class Menu extends JFrame {
         return main;
     }
 
+    public JPanel buildpesquisarCliente() {
+        JPanel main = new JPanel(new BorderLayout());
+
+        main.add(titulo(), BorderLayout.NORTH);
+        main.add(new PesquisarCliente(), BorderLayout.CENTER);
+        main.add(rodape(), BorderLayout.SOUTH);
+
+        return main;
+    }
+
+
     public JPanel buildCadastroProduto() {
         JPanel main = new JPanel(new BorderLayout());
 
@@ -304,6 +316,8 @@ public class Menu extends JFrame {
             frame.setVisible(true);
         }
     };
+
+
 
 
     private ActionListener criarCliente = new ActionListener() {
