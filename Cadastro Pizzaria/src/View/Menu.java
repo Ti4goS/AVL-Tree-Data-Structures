@@ -273,12 +273,23 @@ public class Menu extends JFrame {
         return main;
     }
 
+    public JPanel selecionaCliente() {
+        JPanel main = new JPanel(new BorderLayout());
+        Cliente c = EmpresaController.empresa.getTree().root.cliente;
+        
+        main.add(titulo(), BorderLayout.NORTH);
+        main.add(new EditarCliente(c,frame),BorderLayout.CENTER);
+        main.add(rodape(), BorderLayout.SOUTH);
+
+        return main;
+    }
+
     public JPanel selecionaProduto() {
         JPanel main = new JPanel(new BorderLayout());
         Cliente c = EmpresaController.empresa.getTree().root.cliente;
         
         main.add(titulo(), BorderLayout.NORTH);
-        main.add(new EditarCliente(c),BorderLayout.CENTER);
+        main.add(new AddProdutoView(c,frame,home),BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
 
         return main;
@@ -309,7 +320,7 @@ public class Menu extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             frame.remove(buildHomeScreen());
-            frame.setContentPane(selecionaProduto());
+            frame.setContentPane(selecionaCliente());
             frame.validate();
             frame.setVisible(true);
         }
