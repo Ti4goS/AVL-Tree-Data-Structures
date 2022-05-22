@@ -267,7 +267,7 @@ public class Menu extends JFrame {
         JPanel main = new JPanel(new BorderLayout());
 
         main.add(titulo(), BorderLayout.NORTH);
-        main.add(new MostrarCliente(), BorderLayout.CENTER);
+        main.add(new MostrarCliente(frame), BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
 
         return main;
@@ -278,7 +278,7 @@ public class Menu extends JFrame {
         Cliente c = EmpresaController.empresa.getTree().root.cliente;
         
         main.add(titulo(), BorderLayout.NORTH);
-        main.add(new AddProdutoView(c,frame,home),BorderLayout.CENTER);
+        main.add(new EditarCliente(c),BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
 
         return main;
