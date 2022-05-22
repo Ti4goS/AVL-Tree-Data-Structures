@@ -14,10 +14,11 @@ import javax.swing.border.Border;
 
 public class EditarCliente extends JPanel{
 private Cliente cliente;
-
-     public EditarCliente(Cliente cliente){
+private Menu frame;
+     public EditarCliente(Cliente cliente,Menu frame){
         super(new BorderLayout()); 
             this.cliente=cliente;
+            this.frame =frame;
         editarCliente();
     };
 
@@ -237,7 +238,7 @@ private Cliente cliente;
         back.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
         back.setForeground(Color.RED);
         back.setBorder(border);
-       // back.addActionListener(voltarPrincipal);
+        back.addActionListener(voltarPrincipal);
         add(back, c);
         
         // Botoes
@@ -251,10 +252,27 @@ private Cliente cliente;
         pedido.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
         pedido.setForeground(Color.BLUE);
         pedido.setBorder(border);
+        pedido.addActionListener(selecionaProduto);
         add(pedido, c);
 
 
     }
 
+
+    private ActionListener selecionaProduto = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            frame.setContentPane(frame.selecionaProduto());
+            frame.setVisible(true);
+        }
+    };
+
+    private ActionListener voltarPrincipal = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            frame.setContentPane(frame.buildHomeScreen());
+            frame.setVisible(true);
+        }
+    };
 
  }
