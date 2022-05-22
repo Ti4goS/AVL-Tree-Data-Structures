@@ -101,6 +101,18 @@ public class Empresa {
         return produtos;
     }
 
+    public String[] getArrayStringProdutos() {
+        String[] array = new String[produtos.size()];
+        int i = 0;
+        
+        for (Produto p  : produtos) {
+            array[i] = p.getNome();
+            i++;
+        }
+
+        return array;
+    }
+
     public void setProduto(Produto prod) {
         this.produtos.add(prod);
     }
