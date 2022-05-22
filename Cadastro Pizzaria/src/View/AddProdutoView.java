@@ -14,7 +14,6 @@ import Controller.EmpresaController;
 import Model.empresa.Cliente;
 
 public class AddProdutoView extends JPanel {
-
     private Cliente cliente;
     private Menu frame;
     private JPanel home;
@@ -82,7 +81,7 @@ public class AddProdutoView extends JPanel {
     private ActionListener voltarPrincipal = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            frame.setContentPane(frame.buildHomeScreen());
+            frame.setContentPane(new EditarCliente(cliente, frame));
             frame.setVisible(true);
         }
     };

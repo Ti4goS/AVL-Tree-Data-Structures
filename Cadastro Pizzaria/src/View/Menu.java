@@ -87,6 +87,7 @@ public class Menu extends JFrame {
         content.add(createProduct, BorderLayout.CENTER);
 
         JButton searchClient = new JButton("Procurar cliente");
+        searchClient.addActionListener(editarCliente);
         searchClient.setBounds(450, 400, 50, 50);
         searchClient.setBackground(Color.DARK_GRAY);
         searchClient.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
@@ -252,6 +253,17 @@ public class Menu extends JFrame {
         return main;
     }
 
+    public JPanel buildpesquisarCliente() {
+        JPanel main = new JPanel(new BorderLayout());
+
+        main.add(titulo(), BorderLayout.NORTH);
+        main.add(new PesquisarCliente(frame), BorderLayout.CENTER);
+        main.add(rodape(), BorderLayout.SOUTH);
+
+        return main;
+    }
+
+
     public JPanel buildCadastroProduto() {
         JPanel main = new JPanel(new BorderLayout());
 
@@ -267,7 +279,18 @@ public class Menu extends JFrame {
         JPanel main = new JPanel(new BorderLayout());
 
         main.add(titulo(), BorderLayout.NORTH);
-        main.add(new MostrarCliente(), BorderLayout.CENTER);
+        main.add(new MostrarCliente(frame), BorderLayout.CENTER);
+        main.add(rodape(), BorderLayout.SOUTH);
+
+        return main;
+    }
+
+    public JPanel selecionaCliente() {
+        JPanel main = new JPanel(new BorderLayout());
+        Cliente c = EmpresaController.empresa.getTree().root.cliente;
+        
+        main.add(titulo(), BorderLayout.NORTH);
+        main.add(new PesquisarCliente(frame),BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
 
         return main;
@@ -295,6 +318,8 @@ public class Menu extends JFrame {
     };
 
 
+
+
     private ActionListener criarCliente = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -309,7 +334,7 @@ public class Menu extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             frame.remove(buildHomeScreen());
-            frame.setContentPane(selecionaProduto());
+            frame.setContentPane(selecionaCliente());
             frame.validate();
             frame.setVisible(true);
         }
