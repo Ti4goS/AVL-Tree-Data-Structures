@@ -5,7 +5,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import Controller.EmpresaController;
-import Controller.ReadFile;
 import Model.empresa.Produto;
 
 import java.awt.*;
