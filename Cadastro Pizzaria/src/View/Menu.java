@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import Controller.EmpresaController;
-
+import Model.Node;
 import Model.empresa.Cliente;
 
 import Model.empresa.Produto;
@@ -58,6 +58,34 @@ public class Menu extends JFrame {
         footer.setPreferredSize(new Dimension(800, 50));
         footer.add(creditos, BorderLayout.SOUTH);
 
+        return footer;
+    }
+
+    private JPanel rodapeVoltar() {
+
+        JPanel footer = new JPanel(new BorderLayout());
+        footer.setLayout(new GridLayout(1, 2));
+        footer.setBackground(Color.WHITE);
+        footer.setPreferredSize(new Dimension(800, 50));
+        
+        
+        JLabel creditos = new JLabel("<html>Grupo VI - ED1 &copy; - <B>Luan - Muzan - Tiago</b></html>");
+        textFont = new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 14);
+        creditos.setFont(textFont);
+        creditos.setForeground(Color.BLUE);
+        creditos.setBackground(Color.WHITE);
+        creditos.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 50));
+        footer.add(creditos, BorderLayout.EAST);
+
+        JButton back = new JButton("Excluir");
+        back.setBounds(100, 200, 25, 25);
+        back.setBackground(Color.WHITE);
+        back.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+        back.setForeground(Color.RED);
+        back.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(10, 50, 10, 50),
+        BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK)));
+        back.addActionListener(voltarPrincipal);
+        footer.add(back,BorderLayout.WEST);
         return footer;
     }
 
@@ -292,6 +320,16 @@ public class Menu extends JFrame {
         main.add(titulo(), BorderLayout.NORTH);
         main.add(new PesquisarCliente(frame),BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
+
+        return main;
+    }
+
+    public JPanel editaCliente(Node n) {
+        JPanel main = new JPanel(new BorderLayout());
+        
+        main.add(titulo(), BorderLayout.NORTH);
+        main.add(new EditarCliente(n.cliente, frame),BorderLayout.CENTER);
+        main.add(rodapeVoltar(), BorderLayout.SOUTH);
 
         return main;
     }
