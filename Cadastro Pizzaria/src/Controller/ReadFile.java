@@ -78,9 +78,10 @@ public class ReadFile {
                     if(line.contains("Nome="))
                         nome = getSubString(line, "Nome=");
 
-                    if(line.contains("Preço="))
+                    if(line.contains("Preco="))
                         try {
-                            valor = Double.parseDouble(getSubString(line, "Preço="));
+                            System.out.println(getSubString(line, "Preco="));
+                            valor = Double.parseDouble(getSubString(line, "Preco="));
                         } catch (Exception e) {
                             valor = 0;
                         }
@@ -163,7 +164,7 @@ public class ReadFile {
                 }
 
 
-                System.out.println(EmpresaController.empresa.toString());
+                ///System.out.println(EmpresaController.empresa.toString());
             }
         }catch(FileNotFoundException e){
             System.out.println("Banco de Dados não foi encontrado");

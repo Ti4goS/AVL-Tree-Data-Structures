@@ -12,17 +12,16 @@ import java.awt.event.ActionListener;
 
 import Controller.EmpresaController;
 import Model.empresa.Cliente;
+import Model.empresa.Produto;
 
 public class AddProdutoView extends JPanel {
     private Cliente cliente;
     private Menu frame;
-    private JPanel home;
-
-    public AddProdutoView(Cliente cliente, Menu frame, JPanel home) {
+    private JComboBox seletor = new JComboBox(EmpresaController.empresa.getArrayStringProdutos());
+    public AddProdutoView(Cliente cliente, Menu frame) {
         super(new BorderLayout());
         this.cliente = cliente;
         this.frame = frame;
-        this.home = home;
         selectProduct();
     }
 
@@ -52,7 +51,7 @@ public class AddProdutoView extends JPanel {
         c.gridx = 1;
         c.gridy = 1;
 
-        JComboBox seletor = new JComboBox(EmpresaController.empresa.getArrayStringProdutos());
+        
         seletor.setBorder(BorderFactory.createEmptyBorder(80, 50, 80, 50));
         seletor.setBackground(Color.WHITE);
         seletor.setForeground(Color.BLACK);
@@ -73,6 +72,7 @@ public class AddProdutoView extends JPanel {
         save.setBackground(Color.WHITE);
         save.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
         save.setForeground(Color.BLUE);
+        save.addActionListener(salvarCliente);
         save.setBorder(border);
         add(save);
 
@@ -81,8 +81,25 @@ public class AddProdutoView extends JPanel {
     private ActionListener voltarPrincipal = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            frame.setContentPane(new EditarCliente(cliente, frame));
+            frame.setContentPane(frame.editaCliente(cliente));
             frame.setVisible(true);
+        }
+    };
+
+    private ActionListener salvarCliente = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String name = (String) seletor.getSelectedItem();
+
+            for (Produto p : EmpresaController.empresa.getProdutos()) 
+                if (p.getNome().equals(name)) {
+                    cliente.setUltimoPedido(p);
+                    JOptionPane.showConfirmDialog(null, "Venda Realizada com sucesso!","Sucesso",JOptionPane.OK_OPTION);
+                    frame.setContentPane(frame.editaCliente(cliente));
+                    frame.setVisible(true);
+                }
+                    
+            
         }
     };
 }

@@ -35,8 +35,9 @@ public class Cliente extends Pessoa {
     }
 
 
-    public void setTotalGasto(double totalGasto) {
-        this.totalGasto = totalGasto;
+    public void setTotalGasto(double ultimoPedido) {
+        this.totalGasto += ultimoPedido;
+        setValorDoUltimoPedido(ultimoPedido);
     }
 
 
@@ -45,7 +46,7 @@ public class Cliente extends Pessoa {
     }
 
 
-    public void addTotalPedidos() {
+    private void addTotalPedidos() {
         this.totalPedidos++;
     }
 
@@ -55,8 +56,9 @@ public class Cliente extends Pessoa {
     }
 
 
-    public void setUltimoPedido(String ultimoPedido) {
-        this.ultimoPedido = ultimoPedido;
+    public void setUltimoPedido(Produto p) {
+        this.ultimoPedido = p.getNome();
+        setTotalGasto(p.getValor());
     }
 
 
@@ -65,8 +67,9 @@ public class Cliente extends Pessoa {
     }
 
 
-    public void setValorDoUltimoPedido(double valorDoUltimoPedido) {
+    private void setValorDoUltimoPedido(double valorDoUltimoPedido) {
         this.valorDoUltimoPedido = valorDoUltimoPedido;
+        addTotalPedidos();
     }
 
 

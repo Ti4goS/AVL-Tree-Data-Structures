@@ -31,7 +31,7 @@ public class WriteFile {
 
 
         for (Produto p : empresa.getProdutos()) {
-            writeFile.printf("Produto: Nome=\"%s\" Preço=\"%f\"\n",p.getNome(),p.getValor());
+            writeFile.printf("Produto: Nome=\"%s\" Preco=\"%.0f.00\"\n",p.getNome(),p.getValor());
         }
         
         if (empresa.tree.root == null) {
@@ -48,7 +48,7 @@ public class WriteFile {
     private void writeClients(Node node) {
         if (node != null) {
             writeFile.printf(
-                    "Cliente: Nome=\"%s\" Telefone=\"%s\" CPF=\"%s\" TotalGasto=\"%f\" TotalPedidos=\"%d\" UltimoPedido=\"%s\" valorUltimoPedido=\"%f\" Rua=\"%s\" Numero=\"%d\" Bairro=\"%s\" Cidade=\"%s\" Estado=\"%s\" \n",
+                    "Cliente: Nome=\"%s\" Telefone=\"%s\" CPF=\"%s\" TotalGasto=\"%.0f.00\" TotalPedidos=\"%d\" UltimoPedido=\"%s\" valorUltimoPedido=\"%.0f.00\" Rua=\"%s\" Numero=\"%d\" Bairro=\"%s\" Cidade=\"%s\" Estado=\"%s\" \n",
                     node.cliente.getNome(), node.cliente.getTelefone(), node.cliente.getCpf(),
                     node.cliente.getTotalGasto(), node.cliente.getTotalPedidos(), node.cliente.getUltimoPedido(),
                     node.cliente.getValorDoUltimoPedido(), node.cliente.getEndereco().getEndereço(),
