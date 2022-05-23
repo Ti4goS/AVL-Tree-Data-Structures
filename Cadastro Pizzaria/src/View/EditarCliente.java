@@ -288,6 +288,7 @@ public class EditarCliente extends JPanel {
                     JOptionPane.OK_OPTION);
             if (result == JOptionPane.OK_OPTION) {
                 EmpresaController.deleteNode(cliente);
+                System.out.println("passou");
                 frame.setContentPane(frame.buildHomeScreen());
                 frame.setVisible(true);
             }

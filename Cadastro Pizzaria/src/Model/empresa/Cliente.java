@@ -81,4 +81,11 @@ public class Cliente extends Pessoa {
     }
 
     
+    public boolean igual(String nome,String cpf){
+        if(this.getNome().contains(nome) && this.getCpf().contains(cpf)) return true;
+
+        return false;
+    }
+
+    
 }
