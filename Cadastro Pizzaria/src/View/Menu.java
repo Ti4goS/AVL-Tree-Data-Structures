@@ -77,7 +77,7 @@ public class Menu extends JFrame {
         creditos.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 50));
         footer.add(creditos, BorderLayout.EAST);
 
-        JButton back = new JButton("Excluir");
+        JButton back = new JButton("Voltar");
         back.setBounds(100, 200, 25, 25);
         back.setBackground(Color.WHITE);
         back.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
@@ -315,7 +315,6 @@ public class Menu extends JFrame {
 
     public JPanel selecionaCliente() {
         JPanel main = new JPanel(new BorderLayout());
-        Cliente c = EmpresaController.empresa.getTree().root.cliente;
         
         main.add(titulo(), BorderLayout.NORTH);
         main.add(new PesquisarCliente(frame),BorderLayout.CENTER);
@@ -324,22 +323,21 @@ public class Menu extends JFrame {
         return main;
     }
 
-    public JPanel editaCliente(Node n) {
+    public JPanel editaCliente(Cliente cliente) {
         JPanel main = new JPanel(new BorderLayout());
         
         main.add(titulo(), BorderLayout.NORTH);
-        main.add(new EditarCliente(n.cliente, frame),BorderLayout.CENTER);
+        main.add(new EditarCliente(cliente, frame),BorderLayout.CENTER);
         main.add(rodapeVoltar(), BorderLayout.SOUTH);
 
         return main;
     }
 
-    public JPanel selecionaProduto() {
+    public JPanel selecionaProduto(Cliente c) {
         JPanel main = new JPanel(new BorderLayout());
-        Cliente c = EmpresaController.empresa.getTree().root.cliente;
         
         main.add(titulo(), BorderLayout.NORTH);
-        main.add(new AddProdutoView(c,frame,home),BorderLayout.CENTER);
+        main.add(new AddProdutoView(c,frame),BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
 
         return main;
@@ -385,6 +383,8 @@ public class Menu extends JFrame {
             frame.setVisible(true);
         }
     };
+
+    
 
     private static void createAndShowGUI() {
 

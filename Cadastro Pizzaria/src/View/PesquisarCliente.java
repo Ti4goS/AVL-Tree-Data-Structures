@@ -9,7 +9,6 @@ import javax.swing.border.Border;
 
 import Controller.EmpresaController;
 import Model.Node;
-import Model.empresa.Cliente;
 
 public class PesquisarCliente extends JPanel {
     private Menu frame;
@@ -113,10 +112,11 @@ public class PesquisarCliente extends JPanel {
     
         @Override
         public void actionPerformed(ActionEvent e) {
-            Node found = EmpresaController.procuraCliente(EmpresaController.empresa.tree.root,nameText.getText(),CadastroPessoaFisica.getText());
+            Node found = EmpresaController.empresa.tree.search(nameText.getText(),CadastroPessoaFisica.getText());
 
+            System.out.println(nameText.getText().toLowerCase() + CadastroPessoaFisica.getText().toLowerCase());
             if(found!=null){
-                frame.setContentPane(frame.editaCliente(found));
+                frame.setContentPane(frame.editaCliente(found.cliente));
                 frame.setVisible(true);
             }else{
                 int result = JOptionPane.showConfirmDialog(null, "Digite um valor valido nos campos","ERRO!",JOptionPane.OK_OPTION);

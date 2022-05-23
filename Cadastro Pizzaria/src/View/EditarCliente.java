@@ -11,6 +11,8 @@ import javax.swing.*;
 
 import javax.swing.border.Border;
 
+import Controller.EmpresaController;
+
 
 public class EditarCliente extends JPanel{
 private Cliente cliente;
@@ -232,7 +234,7 @@ private Menu frame;
 
         //Buttons
         
-        JButton back = new JButton("Voltar");
+        JButton back = new JButton("Excluir Cliente");
         back.setBounds(100, 200, 25, 25);
         back.setBackground(Color.WHITE);
         back.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
@@ -262,7 +264,7 @@ private Menu frame;
     private ActionListener selecionaProduto = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            frame.setContentPane(frame.selecionaProduto());
+            frame.setContentPane(frame.selecionaProduto(cliente));
             frame.setVisible(true);
         }
     };
@@ -270,8 +272,14 @@ private Menu frame;
     private ActionListener voltarPrincipal = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            frame.setContentPane(frame.buildHomeScreen());
-            frame.setVisible(true);
+            int result = JOptionPane.showConfirmDialog(null, "Deseja excluir o cliente da lista de clientes?","AVISO!",JOptionPane.OK_OPTION);
+            if(result==JOptionPane.OK_OPTION){
+                EmpresaController.deleteNode(cliente);
+                frame.setContentPane(frame.buildHomeScreen());
+                frame.setVisible(true);
+            }
+            
+
         }
     };
 
