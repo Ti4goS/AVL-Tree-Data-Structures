@@ -8,11 +8,14 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import Controller.EmpresaController;
+import Model.Node;
 import Model.empresa.Cliente;
 
 public class PesquisarCliente extends JPanel {
     private Menu frame;
-    
+    private JTextField nameText = new JTextField(30);
+    private JTextField CadastroPessoaFisica = new JTextField(30);
+
     public PesquisarCliente(Menu frame) {
         super(new BorderLayout());
         this.frame = frame;
@@ -41,7 +44,7 @@ public class PesquisarCliente extends JPanel {
     c.gridx = 1;
     c.gridy = 0;
 
-    JTextField nameText = new JTextField(30);
+    
     nameText.setPreferredSize(new Dimension(20, 10));
     nameText.setFont(new Font("Arial", Font.BOLD, 14));
     nameText.setBorder(border);
@@ -65,14 +68,14 @@ public class PesquisarCliente extends JPanel {
     c.gridx = 1;
     c.gridy = 1;
 
-    JTextField CadastroPessoaFisica = new JTextField("teste");
+    
     CadastroPessoaFisica.setPreferredSize(new Dimension(20, 10));
     CadastroPessoaFisica.setFont(new Font("Arial", Font.BOLD, 14));
     CadastroPessoaFisica.setBorder(border);
     CadastroPessoaFisica.setMargin(new Insets(10, 10, 10, 10));
     add(CadastroPessoaFisica,c);
 
-    JButton back = new JButton("Voltar");
+    JButton back = new JButton("voltar");
     back.setBounds(100, 200, 25, 25);
     back.setBackground(Color.WHITE);
     back.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
@@ -110,10 +113,20 @@ public class PesquisarCliente extends JPanel {
     
         @Override
         public void actionPerformed(ActionEvent e) {
-            Cliente found = EmpresaController.procuraCliente();
+            Node found = EmpresaController.procuraCliente(EmpresaController.empresa.tree.root,nameText.getText(),CadastroPessoaFisica.getText());
 
-            frame.setContentPane(new EditarCliente(found, frame));
-            frame.setVisible(true);
+            if(found!=null){
+                frame.setContentPane(frame.editaCliente(found));
+                frame.setVisible(true);
+            }else{
+                int result = JOptionPane.showConfirmDialog(null, "Digite um valor valido nos campos","ERRO!",JOptionPane.OK_OPTION);
+                
+                if(result==JOptionPane.NO_OPTION){
+                    frame.setContentPane(frame.buildHomeScreen());
+                    frame.setVisible(true);
+                }
+            }
+            
         }
     };
 }

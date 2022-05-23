@@ -43,7 +43,7 @@ private Menu frame;
         c.gridx = 1;
         c.gridy = 0;
 
-        JTextField nameText = new JTextField(30);
+        JTextField nameText = new JTextField(cliente.getNome());
         nameText.setPreferredSize(new Dimension(20, 10));
         nameText.setFont(new Font("Arial", Font.BOLD, 14));
         nameText.setBorder(border);
@@ -67,7 +67,7 @@ private Menu frame;
         c.gridx = 1;
         c.gridy = 1;
 
-        JTextField CadastroPessoaFisica = new JTextField(11);
+        JTextField CadastroPessoaFisica = new JTextField(cliente.getCpf());
         CadastroPessoaFisica.setPreferredSize(new Dimension(20, 10));
         CadastroPessoaFisica.setFont(new Font("Arial", Font.BOLD, 14));
         CadastroPessoaFisica.setBorder(border);
@@ -93,7 +93,7 @@ private Menu frame;
         c.gridx = 3;
         c.gridy = 2;
 
-        JTextField Phone = new JTextField(11);
+        JTextField Phone = new JTextField(cliente.getTelefone());
 
         Phone.setPreferredSize(new Dimension(20, 10));
         Phone.setFont(new Font("Arial", Font.BOLD, 14));
@@ -120,7 +120,7 @@ private Menu frame;
         c.gridx = 4;
         c.gridy = 2;
 
-        JTextField Street = new JTextField(30);
+        JTextField Street = new JTextField(cliente.getEndereco().getEndereço());
         Street.setPreferredSize(new Dimension(20, 10));
         Street.setFont(new Font("Arial", Font.BOLD, 14));
         Street.setBorder(border);
@@ -146,7 +146,7 @@ private Menu frame;
         c.gridx = 6;
        c.gridy = 2;
 
-        JTextField number = new JTextField(4);
+        JTextField number = new JTextField(cliente.getEndereco().getNumero().toString());
         number.setPreferredSize(new Dimension(20, 10));
         number.setFont(new Font("Arial", Font.BOLD, 14));
         number.setBorder(border);
@@ -172,7 +172,7 @@ private Menu frame;
         c.gridx = 8;
        c.gridy = 2;
 
-        JTextField city = new JTextField(15);
+        JTextField city = new JTextField(cliente.getEndereco().getCidade());
         city.setPreferredSize(new Dimension(20, 10));
         city.setFont(new Font("Arial", Font.BOLD, 14));
         city.setBorder(border);
@@ -199,7 +199,7 @@ private Menu frame;
         c.gridx = 10;
        c.gridy = 2;
 
-        JTextField district = new JTextField(20);
+        JTextField district = new JTextField(cliente.getEndereco().getBairro());
         district.setPreferredSize(new Dimension(20, 10));
         district.setFont(new Font("Arial", Font.BOLD, 14));
         district.setBorder(border);
@@ -223,7 +223,7 @@ private Menu frame;
         c.gridx = 12;
         c.gridy = 2;
 
-        JTextField state = new JTextField(20);
+        JTextField state = new JTextField(cliente.getEndereco().getEstado());
         state.setPreferredSize(new Dimension(20, 10));
         state.setFont(new Font("Arial", Font.BOLD, 14));
         state.setBorder(border);
