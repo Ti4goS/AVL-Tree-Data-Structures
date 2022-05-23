@@ -162,9 +162,6 @@ public class ReadFile {
 
                          EmpresaController.setRoot(new Cliente(telefone, new Logradouro(rua, numero, bairro, cidade, estado), nome, cpf, totalGasto, totalPedidos, ultimoPedido, valorUltimoPedido));
                 }
-
-
-                ///System.out.println(EmpresaController.empresa.toString());
             }
         }catch(FileNotFoundException e){
             System.out.println("Banco de Dados não foi encontrado");

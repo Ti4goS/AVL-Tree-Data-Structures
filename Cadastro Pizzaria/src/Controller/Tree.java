@@ -48,42 +48,54 @@ public class Tree {
         return height(N.left) - height(N.right);
       }
     
+
       // Insert a node
-      Node insertNode(Node node, Cliente item) {
-    
-        // Find the position and insert the node
+      public Node insert(Node node, Cliente key) {
+ 
+        /* 1.  Perform the normal BST insertion */
         if (node == null)
-          return (new Node(item));
-        if (item.getNome().compareToIgnoreCase(node.cliente.getNome()) < 0)
-          node.left = insertNode(node.left, item);
-        else if (item.getNome().compareToIgnoreCase(node.cliente.getNome()) > 0)
-          node.right = insertNode(node.right, item);
-        else
-          return node;
-    
-        // Update the balance factor of each node
-        // And, balance the tree
-        node.height = 1 + max(height(node.left), height(node.right));
-        int balanceFactor = getBalanceFactor(node);
-        if (balanceFactor > 1) {
-          if (item.getNome().compareToIgnoreCase(node.left.cliente.getNome()) < 0) {
+            return (new Node(key));
+ 
+        if (key.getNome().compareToIgnoreCase(node.cliente.getNome()) < 0)
+            node.left = insert(node.left, key);
+        else if (key.getNome().compareToIgnoreCase(node.cliente.getNome()) > 0)
+            node.right = insert(node.right, key);
+        else // Duplicate keys not allowed
+            return node;
+ 
+        /* 2. Update height of this ancestor node */
+        node.height = 1 + max(height(node.left),
+                              height(node.right));
+ 
+        /* 3. Get the balance factor of this ancestor
+              node to check whether this node became
+              unbalanced */
+        int balance = getBalanceFactor(node);
+ 
+        // If this node becomes unbalanced, then there
+        // are 4 cases Left Left Case
+        if (balance > 1 && key.getNome().compareToIgnoreCase(node.cliente.getNome()) < 0)
             return rightRotate(node);
-          } else if (item.getNome().compareToIgnoreCase(node.right.cliente.getNome()) > 0) {
+ 
+        // Right Right Case
+        if (balance < -1 && key.getNome().compareToIgnoreCase(node.cliente.getNome()) > 0)
+            return leftRotate(node);
+ 
+        // Left Right Case
+        if (balance > 1 && key.getNome().compareToIgnoreCase(node.cliente.getNome()) < 0) {
             node.left = leftRotate(node.left);
             return rightRotate(node);
-          }
         }
-        if (balanceFactor < -1) {
-          if (item.getNome().compareToIgnoreCase(node.right.cliente.getNome()) > 0) {
-            return leftRotate(node);
-          } else if (item.getNome().compareToIgnoreCase(node.left.cliente.getNome()) < 0) {
+ 
+        // Right Left Case
+        if (balance < -1 && 0>key.getNome().compareToIgnoreCase(node.cliente.getNome())) {
             node.right = rightRotate(node.right);
             return leftRotate(node);
-          }
         }
+ 
+        /* return the (unchanged) node pointer */
         return node;
-      }
-    
+    }
       Node nodeWithMimumValue(Node node) {
         Node current = node;
         while (current.left != null)
@@ -173,8 +185,8 @@ public class Tree {
     public void preOrder(Node node) {
 
         if (node != null) {
-            preOrder(node.left);
             System.out.println(node.cliente.toString() + " ");
+            preOrder(node.left);
             preOrder(node.right);
         }
     }

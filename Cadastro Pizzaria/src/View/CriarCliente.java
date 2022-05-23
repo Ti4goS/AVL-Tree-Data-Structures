@@ -7,9 +7,25 @@ import javax.swing.JPanel;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-public class MostrarCliente extends JPanel {
+import Controller.EmpresaController;
+import Model.empresa.Cliente;
+import Model.infos.Logradouro;
+
+public class CriarCliente extends JPanel {
     private Menu frame;
-    public MostrarCliente(Menu frame) {
+
+    private JTextField nameText = new JTextField(30);
+    private JTextField state = new JTextField(20);
+    private JTextField CadastroPessoaFisica = new JTextField(11);
+    private JTextField district = new JTextField(20);
+    private JTextField Street = new JTextField(30);
+    private JTextField Phone = new JTextField(11);
+    private JTextField number = new JTextField(4);
+    private JTextField city = new JTextField(15);
+
+
+
+    public CriarCliente(Menu frame) {
         super(new BorderLayout());
         this.frame = frame;
         cadastrarCliente();
@@ -36,7 +52,7 @@ public class MostrarCliente extends JPanel {
         c.gridx = 1;
         c.gridy = 0;
 
-        JTextField nameText = new JTextField(30);
+        
         nameText.setPreferredSize(new Dimension(20, 10));
         nameText.setFont(new Font("Arial", Font.BOLD, 14));
         nameText.setBorder(border);
@@ -60,7 +76,7 @@ public class MostrarCliente extends JPanel {
         c.gridx = 1;
         c.gridy = 1;
 
-        JTextField CadastroPessoaFisica = new JTextField(11);
+        
         CadastroPessoaFisica.setPreferredSize(new Dimension(20, 10));
         CadastroPessoaFisica.setFont(new Font("Arial", Font.BOLD, 14));
         CadastroPessoaFisica.setBorder(border);
@@ -86,7 +102,7 @@ public class MostrarCliente extends JPanel {
         c.gridx = 3;
         c.gridy = 2;
 
-        JTextField Phone = new JTextField(11);
+        
 
         Phone.setPreferredSize(new Dimension(20, 10));
         Phone.setFont(new Font("Arial", Font.BOLD, 14));
@@ -113,7 +129,7 @@ public class MostrarCliente extends JPanel {
         c.gridx = 4;
         c.gridy = 2;
 
-        JTextField Street = new JTextField(30);
+        
         Street.setPreferredSize(new Dimension(20, 10));
         Street.setFont(new Font("Arial", Font.BOLD, 14));
         Street.setBorder(border);
@@ -139,7 +155,7 @@ public class MostrarCliente extends JPanel {
         c.gridx = 6;
        c.gridy = 2;
 
-        JTextField number = new JTextField(4);
+       
         number.setPreferredSize(new Dimension(20, 10));
         number.setFont(new Font("Arial", Font.BOLD, 14));
         number.setBorder(border);
@@ -165,7 +181,6 @@ public class MostrarCliente extends JPanel {
         c.gridx = 8;
        c.gridy = 2;
 
-        JTextField city = new JTextField(15);
         city.setPreferredSize(new Dimension(20, 10));
         city.setFont(new Font("Arial", Font.BOLD, 14));
         city.setBorder(border);
@@ -192,7 +207,7 @@ public class MostrarCliente extends JPanel {
         c.gridx = 10;
        c.gridy = 2;
 
-        JTextField district = new JTextField(20);
+        
         district.setPreferredSize(new Dimension(20, 10));
         district.setFont(new Font("Arial", Font.BOLD, 14));
         district.setBorder(border);
@@ -216,7 +231,7 @@ public class MostrarCliente extends JPanel {
         c.gridx = 12;
         c.gridy = 2;
 
-        JTextField state = new JTextField(20);
+
         state.setPreferredSize(new Dimension(20, 10));
         state.setFont(new Font("Arial", Font.BOLD, 14));
         state.setBorder(border);
@@ -245,6 +260,7 @@ public class MostrarCliente extends JPanel {
         save.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
         save.setForeground(Color.BLUE);
         save.setBorder(border);
+        save.addActionListener(salvar);
         add(save, c);
 
 
@@ -256,5 +272,43 @@ public class MostrarCliente extends JPanel {
             frame.setContentPane(frame.buildHomeScreen());
             frame.setVisible(true);
         }
-        };
+    };
+
+    private ActionListener salvar = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String nome = "";
+            String telefone = "";
+            String cpf = "";
+            String rua = "";
+            int numero = 0;
+            String bairro = "";
+            String cidade = "";
+            String estado = "";
+
+            nome = nameText.getText();
+            cpf = CadastroPessoaFisica.getText();
+            telefone = Phone.getText();
+            rua = Street.getText();
+            bairro = district.getText();
+            cidade = city.getText();
+            estado = state.getText();
+            try {
+                numero = Integer.parseInt(number.getText());
+            } catch (Exception exp) {
+                numero = 0;
+            }
+
+            Cliente newCliente = new Cliente(telefone, new Logradouro(rua, numero, bairro, cidade, estado), nome, cpf, 0, 0, "", 0);
+            EmpresaController.setRoot(newCliente);
+
+            frame.setContentPane(frame.buildHomeScreen());
+            frame.setVisible(true);
+        }
+    };
+
+    public CriarCliente(LayoutManager layout, Menu frame) {
+        super(layout);
+        this.frame = frame;
+    }
 }

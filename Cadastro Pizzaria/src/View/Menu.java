@@ -4,8 +4,8 @@ import javax.swing.*;
 
 import javax.swing.border.Border;
 
+import Controller.BusinessReport;
 import Controller.EmpresaController;
-import Model.Node;
 import Model.empresa.Cliente;
 
 import Model.empresa.Produto;
@@ -20,6 +20,7 @@ public class Menu extends JFrame {
     private static Menu frame;
     private static JPanel home;
     private static Font textFont;
+    private static EditarCliente editar;
 
     public Menu(String titulo) {
         super(titulo);
@@ -61,7 +62,7 @@ public class Menu extends JFrame {
         return footer;
     }
 
-    private JPanel rodapeVoltar() {
+    private JPanel rodapeVoltar(Cliente cliente) {
 
         JPanel footer = new JPanel(new BorderLayout());
         footer.setLayout(new GridLayout(1, 2));
@@ -84,7 +85,7 @@ public class Menu extends JFrame {
         back.setForeground(Color.RED);
         back.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(10, 50, 10, 50),
         BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK)));
-        back.addActionListener(voltarPrincipal);
+        back.addActionListener(salvarClienteEditado);
         footer.add(back,BorderLayout.WEST);
         return footer;
     }
@@ -124,11 +125,12 @@ public class Menu extends JFrame {
         searchClient.setBorder(BorderFactory.createMatteBorder(30, 25, 30, 575, Color.WHITE));
         content.add(searchClient, BorderLayout.CENTER);
 
-        JButton discount = new JButton("Enviar cupom de desconto");
+        JButton discount = new JButton("Relatório de Vendas");
         discount.setBounds(350, 400, 50, 50);
         discount.setBackground(Color.DARK_GRAY);
         discount.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
         discount.setForeground(Color.WHITE);
+        discount.addActionListener(createReport);
         discount.setBorder(BorderFactory.createMatteBorder(30, 25, 30, 575, Color.WHITE));
         content.add(discount, BorderLayout.CENTER);
 
@@ -307,7 +309,7 @@ public class Menu extends JFrame {
         JPanel main = new JPanel(new BorderLayout());
 
         main.add(titulo(), BorderLayout.NORTH);
-        main.add(new MostrarCliente(frame), BorderLayout.CENTER);
+        main.add(new CriarCliente(frame), BorderLayout.CENTER);
         main.add(rodape(), BorderLayout.SOUTH);
 
         return main;
@@ -325,10 +327,11 @@ public class Menu extends JFrame {
 
     public JPanel editaCliente(Cliente cliente) {
         JPanel main = new JPanel(new BorderLayout());
-        
+        editar = new EditarCliente(cliente, frame);
+
         main.add(titulo(), BorderLayout.NORTH);
-        main.add(new EditarCliente(cliente, frame),BorderLayout.CENTER);
-        main.add(rodapeVoltar(), BorderLayout.SOUTH);
+        main.add(editar,BorderLayout.CENTER);
+        main.add(rodapeVoltar(cliente), BorderLayout.SOUTH);
 
         return main;
     }
@@ -343,6 +346,16 @@ public class Menu extends JFrame {
         return main;
     }
 
+    private ActionListener salvarClienteEditado = new ActionListener(){
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           editar.clienteAlterado();  
+           frame.setContentPane(Menu.home);
+        frame.setVisible(true);    
+        }
+    };
+
     private ActionListener criarProduto = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -354,7 +367,18 @@ public class Menu extends JFrame {
     };
 
 
-
+    private ActionListener createReport = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                BusinessReport br = new BusinessReport("./relatorio.csv");
+                br.buildBusinessReport();
+                
+            } catch (Exception e1) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel gerar o relatorio", "Erro", JOptionPane.OK_OPTION);
+            }
+        }
+    };
 
     private ActionListener criarCliente = new ActionListener() {
         @Override
@@ -407,6 +431,4 @@ public class Menu extends JFrame {
             }
         });
     }
-
-
 }

@@ -8,7 +8,7 @@ public class EmpresaController {
     public static Empresa empresa;
 
     public static void setRoot(Cliente c) {
-        empresa.tree.root = empresa.tree.insertNode(empresa.tree.root, c);
+        empresa.tree.root = empresa.tree.insert(empresa.tree.root, c);
     }
 
     public static void deleteNode(Cliente c) {
