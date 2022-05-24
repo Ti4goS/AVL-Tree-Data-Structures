@@ -49,7 +49,6 @@ public class EditarCliente extends JPanel {
         setLayout(new GridLayout(9, 2));
         Border border = BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(10, 2, 10, 20),
                 BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
-        // Labels
 
         JLabel Name = new JLabel("Nome:", JLabel.CENTER);
         Name.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
@@ -241,7 +240,6 @@ public class EditarCliente extends JPanel {
         back.addActionListener(voltarPrincipal);
         add(back, c);
 
-        // Botoes
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 5;
         c.gridy = 9;
