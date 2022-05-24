@@ -7,15 +7,17 @@ import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 
 import Model.Node;
+import View.getCaminho;
 
 public class BusinessReport {
-
+    getCaminho local;
     private String path;
     private FileWriter fileName;
     private PrintWriter writeFile;
 
-    public BusinessReport(String path) throws IOException {
-        this.path = path;
+    public BusinessReport(String nome) throws IOException {
+        this.local = new getCaminho();
+        this.path = local.localDoAqruivo();
         fileName = new FileWriter(this.path);
         writeFile = new PrintWriter(fileName);
     }
